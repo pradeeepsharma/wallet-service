@@ -21,7 +21,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @Autowired
     Environment env;
 
-    @ExceptionHandler({CustomerAlreadyExistException.class, CustomerNotFoundException.class})
+    @ExceptionHandler({CustomerAlreadyExistException.class, CustomerNotFoundException.class,InSufficientBalanceException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ErrorMessage> invalidRequestHandler(Exception ex, WebRequest webRequest) {
         ErrorMessage errorMessage = ErrorMessage.builder()
@@ -31,6 +31,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
         return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
     }
+
 
 
 
